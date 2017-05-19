@@ -1,0 +1,38 @@
+{
+  "volume": 34,
+  "mute": false,
+  "equalizer": {
+    "bass": 0,
+    "treble": 0,
+    "loudness": true
+  },
+  "currentTrack": {
+    "artist": "Scott Bradlee's Postmodern Jukebox",
+    "title": "Habits",
+    "album": "Selfies on Kodachrome",
+    "albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3wMJQ5qeN02ljNn3lRMVka%3fsid%3d12%26flags%3d8224%26sn%3d1",
+    "duration": 215,
+    "uri": "x-sonos-spotify:spotify%3atrack%3a3wMJQ5qeN02ljNn3lRMVka?sid=12&flags=8224&sn=1",
+    "type": "track",
+    "stationName": "",
+    "absoluteAlbumArtUri": "http://10.0.1.11:1400/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3wMJQ5qeN02ljNn3lRMVka%3fsid%3d12%26flags%3d8224%26sn%3d1"
+  },
+  "nextTrack": {
+    "artist": "Scott Bradlee's Postmodern Jukebox",
+    "title": "Lovefool",
+    "album": "Swipe Right For Vintage",
+    "albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1MAIJFzQFIQ2Hkm3X5YtCW%3fsid%3d12%26flags%3d8224%26sn%3d1",
+    "duration": 239,
+    "uri": "x-sonos-spotify:spotify%3atrack%3a1MAIJFzQFIQ2Hkm3X5YtCW?sid=12&flags=8224&sn=1",
+    "absoluteAlbumArtUri": "http://10.0.1.11:1400/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1MAIJFzQFIQ2Hkm3X5YtCW%3fsid%3d12%26flags%3d8224%26sn%3d1"
+  },
+  "trackNo": 5,
+  "elapsedTime": 214,
+  "elapsedTimeFormatted": "00:03:34",
+  "playbackState": "PAUSED_PLAYBACK",
+  "playMode": {
+    "repeat": "none",
+    "shuffle": false,
+    "crossfade": false
+  }
+}

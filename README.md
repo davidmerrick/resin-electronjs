@@ -1,6 +1,12 @@
-# resin-electronjs
+Resin.io app based on Electron that displays album art of currently-playing Sonos songs.
+ 
+Requires a separate Sonos API server running (instructions [here](https://www.david-merrick.com/2017/05/16/setting-up-node-sonos-api/) for how to set that up).
+ 
+## Reference
 
-a boilerplate for developing kiosks, digital signage or other human-machine interaction projects based on [ElectronJS](http://electron.atom.io/) and [resin.io](http://resin.io)
+* Sonos API server endpoint for fetching current state to get artwork from: /state
+* JSON example data from this endpoint can be found in test/state.json
+
 
 ## Getting started
 
