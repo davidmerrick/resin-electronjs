@@ -1,65 +1,65 @@
 import React from "react";
 import ReactDOM from "react-dom";
-//var remote = require('electron').remote
+import axios from 'axios'
+
+// Todo: figure out how to inject environment variables for this conf instead.
+// That way, users can configure this at the Resin.io dashboard level.
+import Conf from '../conf/Conf'
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            imgUrl: null
+        };
+    }
 
-  componentDidMount(){
-    //console.log(`Sonos server: ${remote.getGlobal('Constants').SONOS_API_SERVER}`);
-  }
+    updateImageUrl(){
+        console.log("Updating image url...");
+
+        let auth = {
+            username: Conf.AUTH_USERNAME,
+            password: Conf.AUTH_PASSWORD
+        };
+
+        let options = {
+            auth: auth
+        };
+
+        axios.get(`${Conf.SONOS_API_SERVER}/state`, options)
+            .then(result => {
+                let data = result.data;
+                let imgUrl = data.currentTrack.absoluteAlbumArtUri;
+                this.setState({
+                    imgUrl: imgUrl
+                });
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }
+
+    componentDidMount(){
+        this.updateImageUrl();
+        const UPDATE_INTERVAL_MS = 10000; // 10 seconds
+        window.setInterval(() => this.updateImageUrl(), UPDATE_INTERVAL_MS);
+    }
 
   render(){
-    return(
-      <div>
-          <h1>Happy birthday Julie!</h1>
-          <div>
-            &nbsp; &nbsp; \</div>
-          <div>
-            &nbsp; &nbsp; &nbsp;\</div>
-          <div>
-            &nbsp; &nbsp; &nbsp; \\</div>
-          <div>
-            &nbsp; &nbsp; &nbsp; &nbsp;\\</div>
-          <div>
-            &nbsp; &nbsp; &nbsp; &nbsp; &gt;\/7</div>
-          <div>
-            &nbsp; &nbsp; _.-(6&#39; &nbsp;\</div>
-          <div>
-            &nbsp; &nbsp;(=___._/` \</div>
-          <div>
-            &nbsp; &nbsp; &nbsp; &nbsp; ) &nbsp;\ |</div>
-          <div>
-            &nbsp; &nbsp; &nbsp; &nbsp;/ &nbsp; / |</div>
-          <div>
-            &nbsp; &nbsp; &nbsp; / &nbsp; &nbsp;&gt; /</div>
-          <div>
-            &nbsp; &nbsp; &nbsp;j &nbsp; &nbsp;&lt; _\</div>
-          <div>
-            &nbsp;_.-&#39; : &nbsp; &nbsp; &nbsp;``.</div>
-          <div>
-            &nbsp;\ r=._\ &nbsp; &nbsp; &nbsp; &nbsp;`.</div>
-          <div>
-            &lt;`\\_ &nbsp;\ &nbsp; &nbsp; &nbsp; &nbsp; .`-.</div>
-          <div>
-            &nbsp;\ r-7 &nbsp;`-. ._ &nbsp;&#39; . &nbsp;`\</div>
-          <div>
-            &nbsp; \`, &nbsp; &nbsp; &nbsp;`-.`7 &nbsp;7) &nbsp; )</div>
-          <div>
-            &nbsp; &nbsp;\/ &nbsp; &nbsp; &nbsp; &nbsp; \| &nbsp;\&#39; &nbsp;/ `-._</div>
-          <div>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; || &nbsp; &nbsp;.&#39;</div>
-          <div>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ,.-&#39; &gt;.&#39;</div>
-          <div>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;.&#39;_.&#39;&#39;</div>
-          <div>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;&#39;</div>
-      </div>
-    );
+    if(this.state.imgUrl){
+        return(
+            <div>
+                <img src={this.state.imgUrl} />
+            </div>
+        );
+    } else {
+        return(
+            <div>
+                <h1>Loading...</h1>
+            </div>
+        );
+    };
   }
 }
 
