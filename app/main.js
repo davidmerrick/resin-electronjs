@@ -3,6 +3,12 @@ const path = require('path');
 
 const { app, BrowserWindow } = electron;
 
+global.Constants = {
+  SONOS_API_SERVER: process.env.SONOS_API_SERVER,
+  AUTH_USERNAME: process.env.AUTH_USERNAME,
+  AUTH_PASSWORD: process.env.AUTH_PASSWORD
+};
+
 // simple parameters initialization
 const electronConfig = {
   URL_LAUNCHER_TOUCH: process.env.URL_LAUNCHER_TOUCH === '1' ? 1 : 0,

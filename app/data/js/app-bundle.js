@@ -9552,6 +9552,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+//var remote = require('electron').remote
+
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
 
@@ -9562,6 +9564,11 @@ var App = function (_React$Component) {
   }
 
   _createClass(App, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      //console.log(`Sonos server: ${remote.getGlobal('Constants').SONOS_API_SERVER}`);
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react2.default.createElement(
@@ -9570,7 +9577,112 @@ var App = function (_React$Component) {
         _react2.default.createElement(
           "h1",
           null,
-          "Hello, world, from React!"
+          "Happy birthday Julie!"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \xA0 \\"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \xA0 \xA0\\"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \xA0 \xA0 \\\\"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \xA0 \xA0 \xA0\\\\"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \xA0 \xA0 \xA0 >\\/7"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \xA0 _.-(6' \xA0\\"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \xA0(=___._/` \\"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \xA0 \xA0 \xA0 ) \xA0\\ |"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \xA0 \xA0 \xA0/ \xA0 / |"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \xA0 \xA0 / \xA0 \xA0> /"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \xA0 \xA0j \xA0 \xA0< _\\"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0_.-' : \xA0 \xA0 \xA0``."
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0\\ r=._\\ \xA0 \xA0 \xA0 \xA0`."
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "<`\\\\_ \xA0\\ \xA0 \xA0 \xA0 \xA0 .`-."
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0\\ r-7 \xA0`-. ._ \xA0' . \xA0`\\"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \\`, \xA0 \xA0 \xA0`-.`7 \xA07) \xA0 )"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \xA0\\/ \xA0 \xA0 \xA0 \xA0 \\| \xA0\\' \xA0/ `-._"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \xA0 \xA0 \xA0 \xA0 \xA0 \xA0 || \xA0 \xA0.'"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \xA0 \xA0 \xA0 \xA0 \xA0 ,.-' >.'"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \xA0 \xA0 \xA0 \xA0 \xA0<.'_.''"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          "\xA0 \xA0 \xA0 \xA0 \xA0 \xA0 \xA0<'"
         )
       );
     }
