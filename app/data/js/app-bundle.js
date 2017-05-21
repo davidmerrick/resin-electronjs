@@ -11095,7 +11095,7 @@ var App = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
         _this.state = {
-            imgUrl: null
+            currentTrack: null
         };
         return _this;
     }
@@ -11129,10 +11129,14 @@ var App = function (_React$Component) {
 
             _axios2.default.get(SONOS_API_SERVER + "/state", options).then(function (result) {
                 var data = result.data;
-                var imgUrl = data.currentTrack.absoluteAlbumArtUri;
-                _this2.setState({
-                    imgUrl: imgUrl
-                });
+                var currentTrack = data.currentTrack;
+
+                // Sometimes API returns empty data. Don't set it in that case.
+                if (currentTrack.artist != "" && currentTrack.title != "") {
+                    _this2.setState({
+                        currentTrack: currentTrack
+                    });
+                };
             }).catch(function (err) {
                 console.error(err);
             });
@@ -11151,11 +11155,30 @@ var App = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
-            if (this.state.imgUrl) {
+            var currentTrack = this.state.currentTrack;
+
+
+            if (currentTrack && currentTrack.artist && currentTrack.title) {
                 return _react2.default.createElement(
                     "div",
-                    null,
-                    _react2.default.createElement("img", { src: this.state.imgUrl })
+                    { id: "content-wrapper" },
+                    _react2.default.createElement(
+                        "div",
+                        { id: "album-details" },
+                        _react2.default.createElement("img", { src: currentTrack.absoluteAlbumArtUri }),
+                        _react2.default.createElement("br", null),
+                        _react2.default.createElement(
+                            "div",
+                            { id: "song-data" },
+                            _react2.default.createElement(
+                                "span",
+                                null,
+                                currentTrack.artist,
+                                ": ",
+                                currentTrack.title
+                            )
+                        )
+                    )
                 );
             } else {
                 return _react2.default.createElement(

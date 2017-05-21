@@ -7,7 +7,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            imgUrl: null
+            currentTrack: null
         };
     }
 
@@ -33,10 +33,14 @@ class App extends React.Component {
         axios.get(`${SONOS_API_SERVER}/state`, options)
             .then(result => {
                 let data = result.data;
-                let imgUrl = data.currentTrack.absoluteAlbumArtUri;
-                this.setState({
-                    imgUrl: imgUrl
-                });
+                let currentTrack = data.currentTrack;
+
+                // Sometimes API returns empty data. Don't set it in that case.
+                if(currentTrack.artist != "" && currentTrack.title !="") {
+                    this.setState({
+                        currentTrack: currentTrack
+                    });
+                };
             })
             .catch(err => {
                 console.error(err);
@@ -50,10 +54,18 @@ class App extends React.Component {
     }
 
     render(){
-        if(this.state.imgUrl){
+        let {currentTrack} = this.state;
+
+        if(currentTrack && currentTrack.artist && currentTrack.title){
             return(
-                <div>
-                    <img src={this.state.imgUrl} />
+                <div id="content-wrapper">
+                    <div id="album-details">
+                        <img src={currentTrack.absoluteAlbumArtUri} />
+                        <br />
+                        <div id="song-data">
+                            <span>{currentTrack.artist}: {currentTrack.title}</span>
+                        </div>
+                    </div>
                 </div>
             );
         } else {

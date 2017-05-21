@@ -1,0 +1,27 @@
+body {
+    background: black;
+    color: white;
+    font-family: proxima-nova, sans-serif;
+    font-style: normal;
+    font-weight: 300;
+}
+
+div#content-wrapper {
+    width: 100%;
+}
+
+div#album-details {
+    width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
+}
+
+div#song-data {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 30px;
+}
+

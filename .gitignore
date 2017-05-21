@@ -1,9 +1,6 @@
 # Created by https://www.gitignore.io/api/node,windows,osx,linux
 
 .idea
-conf
-app-bundle.js
-
 
 ### Node ###
 # Logs
