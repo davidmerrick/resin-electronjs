@@ -4,6 +4,8 @@ body {
     font-family: proxima-nova, sans-serif;
     font-style: normal;
     font-weight: 300;
+    overflow: hidden;
+    height: 100%;
 }
 
 div#content-wrapper {
@@ -15,7 +17,7 @@ div#album-details {
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    top: 50%;
+    top: 25%;
     transform: translateY(50%);
 }
 
