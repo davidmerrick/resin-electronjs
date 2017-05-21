@@ -2,10 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import axios from 'axios'
 
-// Todo: figure out how to inject environment variables for this conf instead.
-// That way, users can configure this at the Resin.io dashboard level.
-import Conf from '../conf/Conf'
-
 class App extends React.Component {
 
     constructor(props) {
@@ -18,16 +14,23 @@ class App extends React.Component {
     updateImageUrl(){
         console.log("Updating image url...");
 
+        let {AUTH_USERNAME, AUTH_PASSWORD, SONOS_API_SERVER} = window;
+
+        if(!AUTH_USERNAME || !AUTH_PASSWORD || !SONOS_API_SERVER){
+            console.log("Sonos API server variables not set. Bailing for now.");
+            return;
+        }
+
         let auth = {
-            username: Conf.AUTH_USERNAME,
-            password: Conf.AUTH_PASSWORD
+            username: AUTH_USERNAME,
+            password: AUTH_PASSWORD
         };
 
         let options = {
             auth: auth
         };
 
-        axios.get(`${Conf.SONOS_API_SERVER}/state`, options)
+        axios.get(`${SONOS_API_SERVER}/state`, options)
             .then(result => {
                 let data = result.data;
                 let imgUrl = data.currentTrack.absoluteAlbumArtUri;
@@ -46,25 +49,25 @@ class App extends React.Component {
         window.setInterval(() => this.updateImageUrl(), UPDATE_INTERVAL_MS);
     }
 
-  render(){
-    if(this.state.imgUrl){
-        return(
-            <div>
-                <img src={this.state.imgUrl} />
-            </div>
-        );
-    } else {
-        return(
-            <div>
-                <h1>Loading...</h1>
-            </div>
-        );
-    };
-  }
+    render(){
+        if(this.state.imgUrl){
+            return(
+                <div>
+                    <img src={this.state.imgUrl} />
+                </div>
+            );
+        } else {
+            return(
+                <div>
+                    <h1>Loading...</h1>
+                </div>
+            );
+        };
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(<App />, document.getElementById('app'));
+    ReactDOM.render(<App />, document.getElementById('app'));
 });
 
 export default App
