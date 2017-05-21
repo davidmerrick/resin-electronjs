@@ -11172,10 +11172,20 @@ var App = function (_React$Component) {
                             { id: "song-data" },
                             _react2.default.createElement(
                                 "span",
-                                null,
-                                currentTrack.artist,
-                                ": ",
+                                { className: "song-title" },
                                 currentTrack.title
+                            ),
+                            _react2.default.createElement("br", null),
+                            _react2.default.createElement(
+                                "span",
+                                { className: "song-artist" },
+                                currentTrack.artist
+                            ),
+                            _react2.default.createElement("br", null),
+                            _react2.default.createElement(
+                                "span",
+                                { className: "song-album" },
+                                currentTrack.album
                             )
                         )
                     )

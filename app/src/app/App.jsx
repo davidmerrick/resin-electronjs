@@ -63,7 +63,9 @@ class App extends React.Component {
                         <img src={currentTrack.absoluteAlbumArtUri} />
                         <br />
                         <div id="song-data">
-                            <span>{currentTrack.artist}: {currentTrack.title}</span>
+                            <span className="song-title">{currentTrack.title}</span><br />
+                            <span className="song-artist">{currentTrack.artist}</span><br />
+                            <span className="song-album">{currentTrack.album}</span>
                         </div>
                     </div>
                 </div>
