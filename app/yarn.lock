@@ -1573,10 +1573,6 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
 
-fs@^0.0.1-security:
-  version "0.0.1-security"
-  resolved "https://registry.yarnpkg.com/fs/-/fs-0.0.1-security.tgz#8a7bd37186b6dddf3813f23858b57ecaaf5e41d4"
-
 fsevents@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.1.1.tgz#f19fd28f43eeaf761680e519a203c4d0b3d31aff"
@@ -1763,6 +1759,10 @@ home-path@^1.0.1:
 hosted-git-info@^2.1.4:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.4.2.tgz#0076b9f46a270506ddbaaea56496897460612a67"
+
+html-entities@1.0.x:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.0.10.tgz#0dea59130dd50df154e82c4cf71d08c2c9dc968b"
 
 http-signature@~1.1.0:
   version "1.1.1"
@@ -2963,6 +2963,10 @@ safe-buffer@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.0.1.tgz#d263ca54696cd8a306b5ca6551e92de57918fbe7"
 
+sax@^1.2.1:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.2.tgz#fd8631a23bc7826bef5d871bdb87378c95647828"
+
 "semver@2 || 3 || 4 || 5", semver@^5.3.0, semver@~5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
@@ -3016,6 +3020,13 @@ sntp@1.x.x:
   resolved "https://registry.yarnpkg.com/sntp/-/sntp-1.0.9.tgz#6541184cc90aeea6c6e7b35e2659082443c66198"
   dependencies:
     hoek "2.x.x"
+
+"sonos-discovery@https://github.com/jishi/node-sonos-discovery/archive/v1.4.1.tar.gz":
+  version "1.4.1"
+  resolved "https://github.com/jishi/node-sonos-discovery/archive/v1.4.1.tar.gz#04e7661b4c1497edbfd48d58eb52bd4441f9e105"
+  dependencies:
+    html-entities "1.0.x"
+    xml-flow "^1.0.1"
 
 source-list-map@^1.1.1:
   version "1.1.2"
@@ -3448,6 +3459,12 @@ write@^0.2.1:
   resolved "https://registry.yarnpkg.com/write/-/write-0.2.1.tgz#5fc03828e264cea3fe91455476f7a3c566cb0757"
   dependencies:
     mkdirp "^0.5.1"
+
+xml-flow@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/xml-flow/-/xml-flow-1.0.1.tgz#8c77d5918f3072243c30957a46c2679453fe70bb"
+  dependencies:
+    sax "^1.2.1"
 
 xtend@^4.0.0:
   version "4.0.1"
