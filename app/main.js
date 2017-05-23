@@ -4,7 +4,6 @@ const SonosSystem = require('sonos-discovery');
 
 const { app, BrowserWindow } = electron;
 
-// simple parameters initialization
 const electronConfig = {
     URL_LAUNCHER_TOUCH: process.env.URL_LAUNCHER_TOUCH === '1' ? 1 : 0,
     URL_LAUNCHER_TOUCH_SIMULATE: process.env.URL_LAUNCHER_TOUCH_SIMULATE === '1' ? 1 : 0,
@@ -20,16 +19,7 @@ const electronConfig = {
     URL_LAUNCHER_OVERLAY_SCROLLBARS: process.env.URL_LAUNCHER_CONSOLE === '1' ? 1 : 0,
 };
 
-// enable touch events if your device supports them
-if(electronConfig.URL_LAUNCHER_TOUCH){
-    app.commandLine.appendSwitch('--touch-devices');
-}
-// simulate touch events - might be useful for touchscreen with partial driver support
-if(electronConfig.URL_LAUNCHER_TOUCH_SIMULATE) {
-    app.commandLine.appendSwitch('--simulate-touch-screen-with-mouse');
-}
-
-if(process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
     console.log('Running in development mode');
     Object.assign(electronConfig, {
         URL_LAUNCHER_HEIGHT: 600,
@@ -40,25 +30,24 @@ if(process.env.NODE_ENV === 'development') {
     });
 }
 
-function updateAlbumArt(discovery, window){
-    if(discovery.zones.length > 0) {
-        let player = discovery.getAnyPlayer();
-        let { state } = player.coordinator;
-        if(state && typeof state != 'undefined') {
-            let { currentTrack } = state;
-            if(currentTrack.artist != '') {
-                let currentTrackString = JSON.stringify(currentTrack);
-                // Pass environment variables to the window
+function updateAlbumArt(discovery, window) {
+    if (discovery.zones.length > 0) {
+        const player = discovery.getAnyPlayer();
+        const { state } = player.coordinator;
+        if (state && typeof state !== 'undefined') {
+            const { currentTrack } = state;
+            if (currentTrack.artist != '') {
+                const currentTrackString = JSON.stringify(currentTrack);
                 window.webContents.executeJavaScript(`window.CURRENT_TRACK = ${currentTrackString};`);
+                window.webContents.executeJavaScript('document.dispatchEvent(new CustomEvent("currentTrackChanged", null));');
             }
-        };
-    };
+        }
+    }
 }
 
 app.on('ready', () => {
     const discovery = new SonosSystem(null);
 
-    // here we actually configure the behaviour of electronJS
     const window = new BrowserWindow({
         width: electronConfig.URL_LAUNCHER_WIDTH,
         height: electronConfig.URL_LAUNCHER_HEIGHT,
@@ -79,15 +68,15 @@ app.on('ready', () => {
         300);
     });
 
-    if(electronConfig.URL_LAUNCHER_CONSOLE) {
+    if (electronConfig.URL_LAUNCHER_CONSOLE) {
         window.openDevTools();
     }
 
-    discovery.on('topology-change', stateChange => {
+    discovery.on('topology-change', () => {
         updateAlbumArt(discovery, window);
     });
 
-    discovery.on('transport-state', stateChange => {
+    discovery.on('transport-state', () => {
         updateAlbumArt(discovery, window);
     });
 

@@ -9581,12 +9581,10 @@ var App = function (_React$Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            // Todo: set this to be triggered by an event
             this.updateImageUrl();
-            var UPDATE_INTERVAL_MS = 3000; // 3 seconds
-            window.setInterval(function () {
-                return _this2.updateImageUrl();
-            }, UPDATE_INTERVAL_MS);
+            document.addEventListener('currentTrackChanged', function () {
+                _this2.updateImageUrl();
+            });
         }
     }, {
         key: "render",

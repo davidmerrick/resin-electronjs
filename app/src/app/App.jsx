@@ -20,10 +20,10 @@ class App extends React.Component {
     }
 
     componentDidMount(){
-        // Todo: set this to be triggered by an event
         this.updateImageUrl();
-        const UPDATE_INTERVAL_MS = 3000; // 3 seconds
-        window.setInterval(() => this.updateImageUrl(), UPDATE_INTERVAL_MS);
+        document.addEventListener('currentTrackChanged', () => {
+            this.updateImageUrl();
+        });
     }
 
     render(){
