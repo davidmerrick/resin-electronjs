@@ -1,5 +1,6 @@
 const electron = require('electron');
 const path = require('path');
+const SonosSystem = require('sonos-discovery');
 
 const { app, BrowserWindow } = electron;
 
@@ -39,7 +40,24 @@ if(process.env.NODE_ENV === 'development') {
     });
 }
 
+function updateAlbumArt(discovery, window){
+    if(discovery.zones.length > 0) {
+        let player = discovery.getAnyPlayer();
+        let { state } = player.coordinator;
+        if(state && typeof state != 'undefined') {
+            let { currentTrack } = state;
+            if(currentTrack.artist != '') {
+                let currentTrackString = JSON.stringify(currentTrack);
+                // Pass environment variables to the window
+                window.webContents.executeJavaScript(`window.CURRENT_TRACK = ${currentTrackString};`);
+            }
+        };
+    };
+}
+
 app.on('ready', () => {
+    const discovery = new SonosSystem(null);
+
     // here we actually configure the behaviour of electronJS
     const window = new BrowserWindow({
         width: electronConfig.URL_LAUNCHER_WIDTH,
@@ -61,17 +79,17 @@ app.on('ready', () => {
         300);
     });
 
-    window.webContents.on('dom-ready', () => {
-        // Pass environment variables to the window
-        window.webContents.executeJavaScript(`window.SONOS_API_SERVER = "${process.env.SONOS_API_SERVER}";`);
-        window.webContents.executeJavaScript(`window.AUTH_USERNAME = "${process.env.AUTH_USERNAME}";`);
-        window.webContents.executeJavaScript(`window.AUTH_PASSWORD = "${process.env.AUTH_PASSWORD}";`);
-    });
-
-
     if(electronConfig.URL_LAUNCHER_CONSOLE) {
         window.openDevTools();
     }
+
+    discovery.on('topology-change', stateChange => {
+        updateAlbumArt(discovery, window);
+    });
+
+    discovery.on('transport-state', stateChange => {
+        updateAlbumArt(discovery, window);
+    });
 
     window.loadURL(electronConfig.URL_LAUNCHER_URL);
 });

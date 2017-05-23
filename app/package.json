@@ -19,14 +19,13 @@
     "js"
   ],
   "dependencies": {
-    "axios": "^0.16.1",
     "electron": "^1.4.15",
     "electron-rebuild": "^1.5.7",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "sonos-discovery": "https://github.com/jishi/node-sonos-discovery/archive/v1.4.1.tar.gz"
   },
-  "author": "Carlo Maria Curinga",
+  "author": "David Merrick",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/resin-io/resin-electronjs/issues"

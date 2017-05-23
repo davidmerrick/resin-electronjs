@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import axios from 'axios'
 
 class App extends React.Component {
 
@@ -12,44 +11,18 @@ class App extends React.Component {
     }
 
     updateImageUrl(){
-        console.log("Updating image url...");
-
-        let {AUTH_USERNAME, AUTH_PASSWORD, SONOS_API_SERVER} = window;
-
-        if(!AUTH_USERNAME || !AUTH_PASSWORD || !SONOS_API_SERVER){
-            console.log("Sonos API server variables not set. Bailing for now.");
-            return;
-        }
-
-        let auth = {
-            username: AUTH_USERNAME,
-            password: AUTH_PASSWORD
-        };
-
-        let options = {
-            auth: auth
-        };
-
-        axios.get(`${SONOS_API_SERVER}/state`, options)
-            .then(result => {
-                let data = result.data;
-                let currentTrack = data.currentTrack;
-
-                // Sometimes API returns empty data. Don't set it in that case.
-                if(currentTrack.artist != "" && currentTrack.title !="") {
-                    this.setState({
-                        currentTrack: currentTrack
-                    });
-                };
-            })
-            .catch(err => {
-                console.error(err);
+        let currentTrack = window.CURRENT_TRACK;
+        if(currentTrack) {
+            this.setState({
+                currentTrack: currentTrack
             });
+        };
     }
 
     componentDidMount(){
+        // Todo: set this to be triggered by an event
         this.updateImageUrl();
-        const UPDATE_INTERVAL_MS = 10000; // 10 seconds
+        const UPDATE_INTERVAL_MS = 3000; // 3 seconds
         window.setInterval(() => this.updateImageUrl(), UPDATE_INTERVAL_MS);
     }
 
